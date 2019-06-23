@@ -17,7 +17,7 @@
             var fecha = mes+'-'+ano;
             $.ajax({
                 type: 'POST',
-                url:  '/cliente.php',
+                url:  'https://cemon--dis1.herokuapp.com/cliente.php',
                 data: {componente: componente,fecha: fecha},
                 success: function(data) {
                     json_data = JSON.parse(data)
