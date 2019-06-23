@@ -24,6 +24,7 @@
 			<td><a href="#" id="enlacerouter" onclick="Monitorear('Router');"> Monitorear</a><div id="Router"></div></td>
 		</tr>
 	</table>
+	<br>	
         <input id="current_value" type="hidden" value="1"><div> <strong>Disponibilidad del Sistema:</strong><div id="Final"></div></div>
         <br>
     </div>
