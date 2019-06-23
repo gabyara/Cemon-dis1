@@ -53,7 +53,7 @@
 						<center><?php echo  date("d") ." del " . date("m") . " de " . date("Y");?></center>
 						<br>
 						<p style="text-align: justify;">Seleccione el mes y año en donde desea monitorear la disponibilidad de los servicios de CEMON: <br></p>
-						<form action="index.php" method="POST">
+						<form action="" method="POST">
 							<center>
 
 								<select id="mes" name="mes">
