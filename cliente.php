@@ -8,7 +8,7 @@ $fecha = $_POST['fecha'];
 
 $ruta = 'https://cemon--dis1.herokuapp.com';
 
-$cliente = new nusoap_client($ruta."/".$componente.".php",false);
+$cliente = new nusoap_client($ruta."/".$componente.".php",true);
 
 function randomAlpha() {
    
