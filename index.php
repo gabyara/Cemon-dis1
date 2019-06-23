@@ -10,7 +10,26 @@
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="jquery/jquery-2.1.4.js"></script>
     <script src="jquery/jquery-2.1.4.min.js  "></script>  
-    
+    	<script type="text/javascript">
+        function Monitorear(componente) {
+            var mes = $("#mes").val();
+            var ano= $("#ano").val();
+            var fecha = mes+'-'+ano;
+            $.ajax({
+                type: 'POST',
+                url:  'https://cemon--dis1.herokuapp.com/cliente.php',
+                data: {componente: componente,fecha: fecha},
+                success: function(data) {
+                    json_data = JSON.parse(data)
+                    $("#"+componente).html(json_data.frase);
+                    var current_value = $("#current_value").val() * json_data.probabilidad;
+                    $("#current_value").val(current_value);
+                    $("#Final").html($("#current_value").val());
+                }
+            });
+            return false;
+        }
+    </script>
 </head>
 <body>
 	<header>
@@ -77,26 +96,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-        function Monitorear(componente) {
-            var mes = $("#mes").val();
-            var ano= $("#ano").val();
-            var fecha = mes+'-'+ano;
-            $.ajax({
-                type: 'POST',
-                url:  'https://cemon--dis1.herokuapp.com/cliente.php',
-                data: {componente: componente,fecha: fecha},
-                success: function(data) {
-                    json_data = JSON.parse(data)
-                    $("#"+componente).html(json_data.frase);
-                    var current_value = $("#current_value").val() * json_data.probabilidad;
-                    $("#current_value").val(current_value);
-                    $("#Final").html($("#current_value").val());
-                }
-            });
-            return false;
-        }
-    </script>
 </body>
 	
 </html>
