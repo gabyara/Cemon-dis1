@@ -8,7 +8,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/style.css" rel="stylesheet" />
 	<title>CEMON</title>
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="jquery/jquery-2.1.4.js"></script>
     <script src="jquery/jquery-2.1.4.min.js  "></script>  
     <script type="text/javascript">
