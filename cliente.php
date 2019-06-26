@@ -1,4 +1,5 @@
 <?php 
+   header('Access-Control-Allow-Origin: *');
    include_once 'lib/nusoap.php';
    
    $componente = $_POST['componente'];
