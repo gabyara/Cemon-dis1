@@ -9,7 +9,6 @@
    $ruta = 'https://cemon--dis1.herokuapp.com';
 
    $cliente = new nusoap_client($ruta."/".$componente.".php",true);
-   $client -> setEndpoint($ruta."/".$componente.".php); 
 
    function randomAlpha() {
       $rnd = rand(0,100);
