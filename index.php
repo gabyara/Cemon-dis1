@@ -28,7 +28,7 @@
                     $("#Final").html($("#current_value").val());
                 },
 				error: function(data){
-					console.log("error");
+					console.log("prueba");
 				}
             });
             return "HOLA";
