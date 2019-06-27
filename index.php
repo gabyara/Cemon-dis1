@@ -8,8 +8,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/style.css" rel="stylesheet" />
 	<title>CEMON</title>
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script src="jquery/jquery-2.1.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
         function Monitorear(componente) {
             var mes = $("#mes").val();
@@ -28,7 +27,7 @@
                     $("#Final").html($("#current_value").val());
                 },
 				error: function(data){
-					console.log("error");
+					console.log("prueba");
 				}
             });
             return "HOLA";
