@@ -10,6 +10,8 @@
 
    $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl",true);
 
+   $cliente -> setEndpoint($ruta."/".$componente.".php"); 
+
    function randomAlpha() {
       $rnd = rand(0,100);
       return $rnd/100;
