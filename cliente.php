@@ -23,6 +23,6 @@
    $err = $cliente -> getError();
    if($err){echo "Error".$err;}
    
-   echo  $data;
+   echo  json_encode($data);
    
 ?>
