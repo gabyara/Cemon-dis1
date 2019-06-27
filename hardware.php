@@ -17,7 +17,7 @@
 			'probabilidad' => $resultadoDisponibilidad
 		);
 
-		return $respuesta;
+		return json_encode($respuesta);
 	
 	}
 
