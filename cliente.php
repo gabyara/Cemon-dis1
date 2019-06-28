@@ -22,9 +22,11 @@
    $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
 
    $data = $cliente->call("MiFuncion", $parametros);
-   $err = $cliente -> getError();
-   if($err){echo "Error".$err;}
    
+   if($cliente->fault){
+      $data = json_encode(array('componente'=>'No respondio', 'probabilidad'=>'Vacio'));
+   }
+
    echo  $data;
    
 ?>
