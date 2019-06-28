@@ -19,8 +19,8 @@
                 url:  'https://cemon--dis1.herokuapp.com/cliente.php',
                 data: {"componente": componente,"fecha": fecha},
                 success: function(data) {
-					json_data = JSON.parse(data)
-                    $("#"+componente).html(json_data.frase);
+					json_data = JSON.parse(data);
+					$("#"+componente).html(json_data.probabilidad)
                     var current_value = $("#current_value").val() * json_data.probabilidad;
                     $("#current_value").val(current_value);
                     $("#Final").html($("#current_value").val());
@@ -38,16 +38,36 @@
             var ano= $("#ano").val();
             var fecha = mes+'-'+ano;
             $.ajax({
-                type: 'POST',
-                url:  'https://cemondis2.herokuapp.com/cemon.php',
-                data: {"componente": componente,"fecha": fecha},
+                method: 'POST',
+                url:  'https://cemondist2.herokuapp.com/cemon.php',
+                data: {"name": componente,"date": fecha},
+				dataType: "json",
                 success: function(data) {
-					json_data = JSON.parse(data)
-					console.log(json_data.frase);
-
+					console.log(data);
+					switch (componente) {
+						case 'Hardware':
+							var dis = data.hardware;
+							break;
+						case 'BD':
+							var dis = data.bd;
+						break;
+						case 'Aplicación':
+							var dis = data.aplicacion;
+							break;
+						case 'Enlace':
+							var dis = data.enlace;
+						break;
+						case 'Router':
+							var dis = data.router;
+						break;
+					}
+					$("#"+componente).html(dis)
+                    var current_value = $("#current_value").val() * parseFloat(dis);
+                    $("#current_value").val(current_value);
+                    $("#Final").html($("#current_value").val());
                 },
 				error: function(data){
-					console.log("prueba");
+					console.log("Error");
 				}
             });
             return "Listo";
