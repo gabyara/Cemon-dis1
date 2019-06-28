@@ -20,17 +20,37 @@
                 data: {"componente": componente,"fecha": fecha},
                 success: function(data) {
 					json_data = JSON.parse(data)
-					console.log(json_data.frase);
                     $("#"+componente).html(json_data.frase);
                     var current_value = $("#current_value").val() * json_data.probabilidad;
                     $("#current_value").val(current_value);
                     $("#Final").html($("#current_value").val());
                 },
 				error: function(data){
+					console.log("Error");
+				}
+            });
+            return "Listo";
+        }
+	</script>
+	<script type="text/javascript">
+        function Monitorear2(componente) {
+            var mes = $("#mes").val();
+            var ano= $("#ano").val();
+            var fecha = mes+'-'+ano;
+            $.ajax({
+                type: 'POST',
+                url:  'https://cemondis2.herokuapp.com/cemon.php',
+                data: {"componente": componente,"fecha": fecha},
+                success: function(data) {
+					json_data = JSON.parse(data)
+					console.log(json_data.frase);
+
+                },
+				error: function(data){
 					console.log("prueba");
 				}
             });
-            return "HOLA";
+            return "Listo";
         }
     </script>
 </head>
@@ -57,12 +77,12 @@
 						<p style="text-align: justify;">Seleccione el mes y año en donde desea monitorear la disponibilidad de los servicios de CEMON: <br></p>
 						<form action="index.php" method="POST">
 							<center>
-
 								<select id="mes" name="mes">
-			      		 			<?php
+									<?php
+									   echo '<option value="Vacio" selected>'."Mes".'</option>';
 			       						for ($i=1; $i<=12; $i++) {
 			            					if ($i == date('m'))
-			              						echo '<option value="'.$i.'" selected>'.$i.'</option>';
+			              						echo '<option value="'.$i.'">'.$i.'</option>';
 			            					else
 			                					echo '<option value="'.$i.'">'.$i.'</option>';
 			       						}
@@ -70,25 +90,53 @@
 								</select>
 
 								<select id="ano" name="ano">
-		        					<?php
+									<?php
+										echo '<option value="Vacio" selected>'."Año".'</option>';
 			        					for($i=date('o'); $i>=1910; $i--){
 			            					if ($i == date('o'))
-			               						echo '<option value="'.$i.'" selected>'.$i.'</option>';
+			               						echo '<option value="'.$i.'">'.$i.'</option>';
 			            					else
 			                					echo '<option value="'.$i.'">'.$i.'</option>';
 		        						}
-		     
+		        					?>
+								</select>
+
+								<select id="Entidad" name="Entidad">
+									<?php
+										echo '<option value="Vacio" selected>Escoga un Distribuidor</option>';
+			               				echo '<option value="Nosotros"> Nuestros servicios </option>';
+										echo '<option value="Dis2">Servicios Ditribuidor 2</option>';
+										echo '<option value="Otros">Otros</option>';
 		        					?>
 								</select>
 							</center>
 							<br>
 								<center><input type="submit" name="monitorear" value="Monitorear"></center><br>
 								<?php
+									
 									if (isset($_POST['monitorear'])) {
+
+										switch ($_POST["Entidad"]) {
+											case "Nosotros":
+												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
+													$date=$_POST['mes'] .'-'.$_POST['ano'];
+													echo '<center><strong>Fecha a consultar: '.$date.'</strong></center><br>';
+													include('vista.inc'); 
+												}else{
+													echo "Escoja una fecha";
+												}
+												break;
+											case "Dis2":
+												echo '<center><strong>Distribuidor 2</strong></center><br>';
+												include('ellos.inc'); 
+												break;
+											case "Otros":
+												echo "Proximamente";
+												break;
+											default:
+												echo "Escoja una Entidad";
+										}
 										
-										$date=$_POST['mes'] .'-'.$_POST['ano'];
-										echo '<center><strong>Fecha a consultar: '.$date.'</strong></center><br>';
-										include('vista.inc'); 
 									}
 								?>
 						</form>
