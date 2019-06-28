@@ -244,7 +244,7 @@
 											case "ban1":
 												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
 													echo '<center><strong>Banco 1</strong></center><br>';
-													include('tien1.inc'); 
+													include('ban1.inc'); 
 												}else{
 													echo "Escoja una fecha";
 												}
