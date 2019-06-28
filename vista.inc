@@ -5,23 +5,28 @@
         <table>
 		<tr>
 			<td> Hardware Servidor </td>
-			<td><a href="#" id="enlacehardware" onclick="Monitorear('hardware');"> Monitorear</a><div id="hardware"></div></td>
+			<td><a href="#" id="enlacehardware" onclick="Monitorear('hardware');"> Monitorear</a></td>
+			<td id="hardware"></td>
 		</tr>
 		<tr>
 			<td>Base de Datos</td>
-			<td><a href="#" id="enlacebasededatos" onclick="Monitorear('database');">Monitorear</a><div id="database"></div></td>
+			<td><a href="#" id="enlacebasededatos" onclick="Monitorear('database');">Monitorear</a></td>
+			<td id="database"></td>
 		</tr>
 		<tr>
 			<td>Aplicacion</td>
-			<td><a href="#" id="enlaceaplicacion" onclick="Monitorear('aplicacion');">Monitorear</a><div id="aplicacion"></div></td>
+			<td><a href="#" id="enlaceaplicacion" onclick="Monitorear('aplicacion');">Monitorear</a></td>
+			<td id="aplicacion"></td>
 		</tr>
 		<tr>
 			<td>Enlace Internet</td>
-			<td><a href="#" id="enlaceconexion" onclick="Monitorear('conexion');"> Monitorear</a><div id="conexion"></div></td>
+			<td><a href="#" id="enlaceconexion" onclick="Monitorear('conexion');"> Monitorear</a></td>
+			<td id="conexion"></td>
 		</tr>
 		<tr>
 			<td>Router Internet</td>
-			<td><a href="#" id="enlacerouter" onclick="Monitorear('router');"> Monitorear</a><div id="router"></div></td>
+			<td><a href="#" id="enlacerouter" onclick="Monitorear('router');"> Monitorear</a></td>
+			<td id="router"></td>
 		</tr>
 	</table>
 	<br>	
