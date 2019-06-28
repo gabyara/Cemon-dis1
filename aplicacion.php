@@ -11,11 +11,9 @@ $servicio->register("MiFuncion", array('componente' => 'xsd:string', 'probabilid
 
 function MiFuncion($componente, $probabilidad){
 
-	$resultadoDisponibilidad = $probabilidad;
-	$resultado = "La disponibilidad del componente " . $componente . " es de: " . $resultadoDisponibilidad;	
 	$respuesta = array(
-		'frase' => $resultado,
-		'probabilidad' => $resultadoDisponibilidad
+		'componente' => $componente,
+		'probabilidad' => $probabilidad
 	);
 
 	return json_encode($respuesta);
