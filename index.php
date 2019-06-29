@@ -33,7 +33,7 @@
         }
 	</script>
 	<script type="text/javascript">
-        function Monitorear2(componente) {
+        function Distribuidor2(componente) {
             var mes = $("#mes").val();
             var ano= $("#ano").val();
             var fecha = mes+'-'+ano;
@@ -73,7 +73,7 @@
         }
     </script>
 		<script type="text/javascript">
-        function Monitorear3(componente) {
+        function Tienda1(componente) {
             var mes = $("#mes").val();
             var ano= $("#ano").val();
             var fecha = ano+'-'+mes;
@@ -101,7 +101,6 @@
                 data: {"name": componente,"date": fecha},
 				dataType: "json",
                 success: function(data) {
-					console.log(data.response);
 					var dis = data.response.value;
 					switch (componente) {
 						case 'Base de Datos':
@@ -129,7 +128,44 @@
         }
 	</script>
 	<script type="text/javascript">
-        function Monitorear4(componente) {
+        function Tienda2(componente) {
+            var mes = $("#mes").val();
+            var ano= $("#ano").val();
+            var fecha = mes+'-'+ano;
+            $.ajax({
+                method: 'GET',
+                url:  'https://sgda.herokuapp.com/rs/component',
+                data: {"name": componente,"date": fecha},
+				dataType: "json",
+                success: function(data) {
+					var dis = data.disponibility;
+					switch (componente) {
+						case 'Base de Datos':
+							$("#BD").html(dis)
+						break;
+						case 'Enlace Internet':
+							$("#Enlace").html(dis)
+						break;
+						case 'Router Internet':
+							$("#Router").html(dis)
+						break;
+						default:
+							$("#"+componente).html(dis)
+						break;
+					}
+                    var current_value = $("#current_value").val() * parseFloat(dis);
+                    $("#current_value").val(current_value);
+                    $("#Final").html($("#current_value").val());
+				},
+				error: function(data){
+					console.log("Error");
+				}
+            });
+            return "Listo";
+        }
+    </script>
+	<script type="text/javascript">
+        function Banco1(componente) {
             var mes = $("#mes").val();
             var ano= $("#ano").val();
             var fecha = mes+'-'+ano;
@@ -140,6 +176,31 @@
 				dataType: "json",
                 success: function(data) {
 					var dis = data.value;
+					$("#"+componente).html(dis)
+					var current_value = $("#current_value").val() * parseFloat(dis);
+					$("#current_value").val(current_value);
+					$("#Final").html($("#current_value").val());
+				},
+				error: function(data){
+					console.log("Error");
+				}
+            });
+            return "Listo";
+        }
+	</script>
+	<script type="text/javascript">
+        function Banco2(componente) {
+            var mes = $("#mes").val();
+            var ano= $("#ano").val();
+            var fecha = mes+'-'+ano;
+            $.ajax({
+                method: 'POST',
+                url:  'https://cemon-banco-2.herokuapp.com/component/'+componente,
+                data:  JSON.stringify({'name': componente,'date': fecha}),
+				dataType: "json",
+				contentType: 'application/json',
+                success: function(data) {
+					var dis = data.disponibility;
 					$("#"+componente).html(dis)
 					var current_value = $("#current_value").val() * parseFloat(dis);
 					$("#current_value").val(current_value);
@@ -203,7 +264,9 @@
 			               				echo '<option value="Nosotros"> Nuestros servicios </option>';
 										echo '<option value="Dis2"> Ditribuidor 2</option>';
 										echo '<option value="tien1">Tienda 1</option>';
+										echo '<option value="tien2">Tienda 2</option>';
 										echo '<option value="ban1">Banco 1</option>';
+										echo '<option value="ban2">Banco 2</option>';
 
 		        					?>
 								</select>
@@ -223,19 +286,27 @@
 												}else{
 													echo "Escoja una fecha";
 												}
-												break;
+											break;
 											case "Dis2":
 												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
 													echo '<center><strong>Distribuidor 2</strong></center><br>';
-													include('ellos.inc'); 
+													include('dist2.inc'); 
 												}else{
 													echo "Escoja una fecha";
 												}
-												break;
+											break;
 											case "tien1":
 												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
 													echo '<center><strong>Tienda 1</strong></center><br>';
 													include('tien1.inc'); 
+												}else{
+													echo "Escoja una fecha";
+												}
+											break;
+											case "tien2":
+												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
+													echo '<center><strong>Tienda 2</strong></center><br>';
+													include('tien2.inc'); 
 												}else{
 													echo "Escoja una fecha";
 												}
@@ -247,9 +318,18 @@
 												}else{
 													echo "Escoja una fecha";
 												}
-												break;
+											break;
+											case "ban2":
+												if(is_numeric($_POST['mes']) && is_numeric($_POST['ano'])){
+													echo '<center><strong>Banco 2</strong></center><br>';
+													include('ban2.inc'); 
+												}else{
+													echo "Escoja una fecha";
+												}
+											break;
 											default:
 												echo "Escoja una Entidad";
+											break;
 										}
 										
 									}
