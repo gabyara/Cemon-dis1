@@ -77,57 +77,55 @@
             var mes = $("#mes").val();
             var ano= $("#ano").val();
             var fecha = ano+'-'+mes;
+			console.log(fecha);
+			switch (componente) {
+				case 'Hardware':
+					var dir = "Nodo1";
+					break;
+				case 'Base de Datos':
+					var dir = "Nodo2";
+				break;
+				case 'Aplicación':
+					var dir = "Nodo3";
+					break;
+				case 'Enlace Internet':
+					var dir = "Nodo4";
+				break;
+				case 'Router Internet':
+					var dir = "Nodo5";
+				break;
+			}
             $.ajax({
                 method: 'POST',
-                url:  'http://tienda1-cemon.herokuapp.com/Consume_service.php',
+                url:  'https://tiendauno-comercio-node.herokuapp.com/'+dir,
                 data: {"name": componente,"date": fecha},
+				dataType: "json",
                 success: function(data) {
-					/*let result=[];
-					let t_disp = -1;
-					datos = JSON.parse(data);
-					for(let i=0; i<datos.length; i++){
-						if(datos[i].error){
-							if(datos[i].message=="Componente no disponible")
-								disp = "No disponible";
-							else
-								disp = "Error en Datos";
-						}else{
-							disp = datos[i].response.value;
-							if(t_disp == -1)
-								t_disp = datos[i].response.value;
-							else
-								t_disp = t_disp * datos[i].response.value;
-						}
-						result.push([datos[i].response.name,disp]);
-					}
-					*/console.log(data);/*
+					console.log(data.response);
+					var dis = data.response.value;
 					switch (componente) {
-						case 'Hardware':
-							var dis = data.hardware;
-							break;
-						case 'BD':
-							var dis = data.bd;
+						case 'Base de Datos':
+							$("#BD").html(dis)
 						break;
-						case 'Aplicación':
-							var dis = data.aplicacion;
-							break;
-						case 'Enlace':
-							var dis = data.enlace;
+						case 'Enlace Internet':
+							$("#Enlace").html(dis)
 						break;
-						case 'Router':
-							var dis = data.router;
+						case 'Router Internet':
+							$("#Router").html(dis)
+						break;
+						default:
+							$("#"+componente).html(dis)
 						break;
 					}
-					$("#"+componente).html(dis)
                     var current_value = $("#current_value").val() * parseFloat(dis);
                     $("#current_value").val(current_value);
-                    $("#Final").html($("#current_value").val());*/
+                    $("#Final").html($("#current_value").val());
                 },
 				error: function(data){
 					console.log("prueba");
 				}
             });
-            return "error";
+            return "Listo";
         }
 	</script>
 	<script type="text/javascript">
@@ -141,8 +139,12 @@
                 data: {"name": componente,"date": fecha},
 				dataType: "json",
                 success: function(data) {
-					console.log(data);
-                },
+					var dis = data.value;
+					$("#"+componente).html(dis)
+					var current_value = $("#current_value").val() * parseFloat(dis);
+					$("#current_value").val(current_value);
+					$("#Final").html($("#current_value").val());
+				},
 				error: function(data){
 					console.log("Error");
 				}
@@ -176,7 +178,6 @@
 							<center>
 								<select id="mes" name="mes">
 									<?php
-									   echo '<option value="Vacio" selected>'."Mes".'</option>';
 			       						for ($i=1; $i<=12; $i++) {
 			            					if ($i == date('m'))
 			              						echo '<option value="'.$i.'">'.$i.'</option>';
@@ -188,19 +189,17 @@
 
 								<select id="ano" name="ano">
 									<?php
-										echo '<option value="Vacio" selected>'."Año".'</option>';
 			        					for($i=date('o'); $i>=1910; $i--){
 			            					if ($i == date('o'))
 			               						echo '<option value="'.$i.'">'.$i.'</option>';
 			            					else
 			                					echo '<option value="'.$i.'">'.$i.'</option>';
-		        						}
-		        					?>
+										}
+									?>
 								</select>
 
 								<select id="Entidad" name="Entidad">
 									<?php
-										echo '<option value="Vacio" selected>Escoga un Distribuidor</option>';
 			               				echo '<option value="Nosotros"> Nuestros servicios </option>';
 										echo '<option value="Dis2"> Ditribuidor 2</option>';
 										echo '<option value="tien1">Tienda 1</option>';

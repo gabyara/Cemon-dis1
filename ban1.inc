@@ -6,22 +6,22 @@
 		<tr>
 			<td> Hardware Servidor </td>
 			<td><a href="#" id="enlacehardware" onclick="Monitorear4('server_hardware');"> Monitorear</a></td>
-			<td id="hardware"></td>
+			<td id="server_hardware"></td>
 		</tr>
 		<tr>
 			<td>Base de Datos</td>
 			<td><a href="#" id="enlacebasededatos" onclick="Monitorear4('data_base');">Monitorear</a></td>
-			<td id="database"></td>
+			<td id="data_base"></td>
 		</tr>
 		<tr>
 			<td>Aplicacion</td>
 			<td><a href="#" id="enlaceaplicacion" onclick="Monitorear4('application');">Monitorear</a></td>
-			<td id="aplicacion"></td>
+			<td id="application"></td>
 		</tr>
 		<tr>
 			<td>Enlace Internet</td>
 			<td><a href="#" id="enlaceconexion" onclick="Monitorear4('internet_conection');"> Monitorear</a></td>
-			<td id="conexion"></td>
+			<td id="internet_conection"></td>
 		</tr>
 		<tr>
 			<td>Router Internet</td>
