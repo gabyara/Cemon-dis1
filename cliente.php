@@ -26,7 +26,7 @@
    if($cliente->fault){
       
       $data = array('componente'=>'No respondio', 'probabilidad'=>'Vacio');
-      console.log($data);
+  
       echo $data;
    }
 
