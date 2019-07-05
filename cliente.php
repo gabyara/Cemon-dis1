@@ -13,7 +13,8 @@
    $cliente -> setEndpoint($ruta."/".$componente.".php"); 
 
    if($cliente->fault){
-      $data = json_encode(array('componente'=>$componente, 'probabilidad'=> "No respondio"));
+      $error = "No respondio";
+      $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
 
    function randomAlpha() {
