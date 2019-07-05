@@ -19,7 +19,7 @@
                 url:  'https://cemon--dis1.herokuapp.com/cliente.php',
                 data: {"componente": componente,"fecha": fecha},
                 success: function(data) {
-					json_data = JSON.parse(data);
+					json_data = data;
 					console.log(data);
 					$("#"+componente).html(json_data.probabilidad)
 					if(json_data.probabilidad != "No respondio"){
