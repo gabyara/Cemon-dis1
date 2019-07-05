@@ -23,6 +23,7 @@
       $probabilidad = randomAlpha();
       $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
       $data = $cliente->call("MiFuncion", $parametros);
+      $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
    echo  $data;
    
