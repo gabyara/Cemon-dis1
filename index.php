@@ -19,8 +19,7 @@
                 url:  'https://cemon--dis1.herokuapp.com/cliente.php',
                 data: {"componente": componente,"fecha": fecha},
                 success: function(data) {
-					json_data = data;
-					console.log(data);
+					json_data = JSON.parse(data);
 					$("#"+componente).html(json_data.probabilidad)
 					if(json_data.probabilidad != "No respondio"){
 					   var current_value = $("#current_value").val() * json_data.probabilidad;
@@ -80,7 +79,6 @@
             var mes = $("#mes").val();
             var ano= $("#ano").val();
             var fecha = ano+'-'+mes;
-			console.log(fecha);
 			switch (componente) {
 				case 'Hardware':
 					var dir = "Nodo1";
