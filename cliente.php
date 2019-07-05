@@ -19,7 +19,7 @@
    $probabilidad = randomAlpha();
    $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
    $data = $cliente->call("MiFuncion", $parametros);
-   if (is_Null($data)) {
+   if (is_null($data)) {
       $error = "No respondio";
       $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
