@@ -26,6 +26,7 @@
    if($cliente->fault){
       
       $error = array('componente'=>'No respondio', 'probabilidad'=>'Vacio');
+      console.log($error);
       echo json_encode($error);
    }
 
