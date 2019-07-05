@@ -8,7 +8,7 @@
 
    $ruta = 'https://cem--dis1.herokuapp.com';
 
-   $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl",array( 'trace' => 1,'exceptions' => 0));
+   $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl",true);
 
    $cliente -> setEndpoint($ruta."/".$componente.".php"); 
 
@@ -19,7 +19,7 @@
    $probabilidad = randomAlpha();
    $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
    $data = $cliente->call("MiFuncion", $parametros);
-   if (is_soap_fault($data)) {
+   if (is_Null($data)) {
       $error = "No respondio";
       $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
