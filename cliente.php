@@ -12,6 +12,10 @@
 
    $cliente -> setEndpoint($ruta."/".$componente.".php"); 
 
+   if($cliente->fault){
+      $data = json_encode(array('componente'=>$componente, 'probabilidad'=> "No respondio"));
+   }
+
    function randomAlpha() {
       $rnd = rand(0,100);
       return $rnd/100;
@@ -23,11 +27,7 @@
 
    $data = $cliente->call("MiFuncion", $parametros);
    
-   if($cliente->fault){
-      
-      $data = array('componente'=>$componente, 'probabilidad'=> "No respondio");
- 
-   }
+   
 
   echo  $data;
    
