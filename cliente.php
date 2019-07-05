@@ -25,7 +25,7 @@
    
    if($cliente->fault){
       
-      $data = array('componente'=>'No respondio', 'probabilidad'=>'Vacio');
+      $data = array('componente'=>'No respondio', 'probabilidad'=> 0);
   
       echo json_encode($data);
    }
