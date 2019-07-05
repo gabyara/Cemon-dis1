@@ -27,7 +27,7 @@
       
       $error = array('componente'=>'No respondio', 'probabilidad'=>'Vacio');
       console.log($error);
-      echo json_encode($error);
+      echo $error;
    }
 
    echo  $data;
