@@ -8,7 +8,7 @@
 
    $ruta = 'https://cem--dis1.herokuapp.com';
 
-   $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl", false);
+   $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl",array( 'trace' => 1,'exceptions' => 0));
 
    $cliente -> setEndpoint($ruta."/".$componente.".php"); 
 
