@@ -27,7 +27,7 @@
       
       $data = array('componente'=>'No respondio', 'probabilidad'=>'Vacio');
   
-      echo $data;
+      echo json_encode($data);
    }
 
   echo  $data;
