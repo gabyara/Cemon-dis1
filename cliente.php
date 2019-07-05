@@ -16,15 +16,13 @@
       $rnd = rand(0,100);
       return $rnd/100;
    }
-
-   $probabilidad = randomAlpha();
-   $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
-   $data = $cliente->call("MiFuncion", $parametros);
-
-   if(is_soap_fault($data)){
+   try {
+      $probabilidad = randomAlpha();
+      $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
+      $data = $cliente->call("MiFuncion", $parametros);
+   } catch (SoapFault $fault) {
       $error = "No respondio";
       $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
-   echo  $data;
    
 ?>
