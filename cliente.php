@@ -24,5 +24,5 @@
       $error = "No respondio";
       $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
    }
-   
+   echo $data;
 ?>
