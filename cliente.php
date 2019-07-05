@@ -24,7 +24,8 @@
    $data = $cliente->call("MiFuncion", $parametros);
    
    if($cliente->fault){
-      $data = json_encode(array('componente'=>'No respondio', 'probabilidad'=>'Vacio'));
+      $error = json_encode(array('componente'=>'No respondio', 'probabilidad'=>'Vacio'));
+      echo $error;
    }
 
    echo  $data;
