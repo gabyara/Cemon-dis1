@@ -21,9 +21,7 @@
                 success: function(data) {
 					json_data = JSON.parse(data);
 					$("#"+componente).html(json_data.probabilidad)
-					if(json_data.probabilidad != 'Vacio'){
-						var current_value = $("#current_value").val() * json_data.probabilidad;
-					}
+					var current_value = $("#current_value").val() * json_data.probabilidad;
 					$("#current_value").val(current_value);
 					$("#Final").html($("#current_value").val());
                 },
