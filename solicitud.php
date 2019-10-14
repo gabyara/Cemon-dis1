@@ -24,7 +24,7 @@ function MiFuncion($tipo,$rif,$comprador,$fecha,$productos,$direc){
 		'comprador' => $comprador,
 		'fecha' => $fecha,
 		'fechaF' => $nuevafecha,
-		'costo' => '$costo',
+		'costo' => $costo,
 		'productos'=> $productos,
 		'direc' => $direc,
 		'Estatus' => "Entrante",
