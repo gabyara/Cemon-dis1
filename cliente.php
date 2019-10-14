@@ -10,7 +10,7 @@
    $direc = $_POST['direc'];
    $productos = $_POST['productos'];
    
-   $ruta = 'http://localhost/conec';
+   $ruta = 'https://cemon--dis1.herokuapp.com';
 
    $cliente = new nusoap_client($ruta."/".$tipo.".php?wsdl",true);
    $cliente -> setEndpoint($ruta."/".$tipo.".php"); 
