@@ -35,7 +35,7 @@
 					console.log("Error: ", data);
 				}
             });
-            return "prueba";
+            return "Listo";
 		}
 	</script>	
 
