@@ -12,11 +12,11 @@ $servicio->register("MiFuncion", array('tipo' => 'xsd:string','rif' => 'xsd:int'
 function MiFuncion($tipo,$rif,$comprador,$fecha,$productos,$direc){
 	$nuevafecha = strtotime('+30 day',strtotime($fecha));
 	$nuevafecha = date('Y-m-d' , $nuevafecha);
-	/*switch($dire){
+	switch($dire){
 		case "Caracas":
 			$costo = "10";
 		break;
-	}*/
+	}
 	$respuesta = array(
 		'tipo' => $tipo,
 		'ID' => '0',  //Identificador de la solicitud
@@ -24,7 +24,7 @@ function MiFuncion($tipo,$rif,$comprador,$fecha,$productos,$direc){
 		'comprador' => $comprador,
 		'fecha' => $fecha,
 		'fechaF' => $nuevafecha,
-		'costo' => '10',
+		'costo' => '$costo',
 		'productos'=> $productos,
 		'direc' => $direc,
 		'Estatus' => "Entrante",
