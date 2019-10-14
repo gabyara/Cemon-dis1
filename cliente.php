@@ -2,26 +2,37 @@
    header('Access-Control-Allow-Origin: *');
    include_once 'lib/nusoap.php';
    
-   $componente = $_POST['componente'];
+   $tipo = $_POST['tipo'];
+   $cod = $_POST['cod'];
+   $rif = $_POST['rif'];
+   $comprador = $_POST['comprador'];
    $fecha = $_POST['fecha'];
+   $direc = $_POST['direc'];
+   $productos = $_POST['productos'];
+   
+   $ruta = 'http://localhost/conec';
 
-
-   $ruta = 'https://cemon--dis1.herokuapp.com';
-
-   $cliente = new nusoap_client($ruta."/".$componente.".php?wsdl",true);
-
-   $cliente -> setEndpoint($ruta."/".$componente.".php"); 
-
-   function randomAlpha() {
-      $rnd = rand(0,100);
-      return $rnd/100;
+   $cliente = new nusoap_client($ruta."/".$tipo.".php?wsdl",true);
+   $cliente -> setEndpoint($ruta."/".$tipo.".php"); 
+   if($cod == '' && $tipo == "solicitud"){
+      $parametros = array('tipo'=>$tipo,'rif'=>$rif,"comprador"=>$comprador,"fecha"=>$fecha,"direc"=>$direc, "productos"=>$productos);
+      $data = $cliente->call("MiFuncion", $parametros);
+      if ($data == null) {
+         $error = "No respondio";
+         $data = json_encode(array('tipo'=>$tipo, 'error'=> "Error: Servicio no disponible"));
+      }
+   }else{
+      if($tipo == "confirmacion" && $cod !=''){
+         $parametros = array('tipo'=>$tipo,'cod'=>$cod,'rif'=>$rif,"comprador"=>$comprador,"fecha"=>$fecha);
+         $data = $cliente->call("MiFuncion", $parametros);
+         if ($data == null) {
+            $error = "No respondio";
+            $data = json_encode(array('tipo'=>$tipo, 'error'=> "Error: Servicio no disponible"));
+         }
+      }else{
+         $data = json_encode(array('tipo'=>$tipo, 'error'=> "Error: se equivoco en el tipo de servicio"));
+      }
    }
-   $probabilidad = randomAlpha();
-   $parametros = array('componente'=>$componente, 'probabilidad'=>$probabilidad);
-   $data = $cliente->call("MiFuncion", $parametros);
-   if ($data == null) {
-      $error = "No respondio";
-      $data = json_encode(array('componente'=>$componente, 'probabilidad'=> $error));
-   }
+   
    echo $data;
 ?>
