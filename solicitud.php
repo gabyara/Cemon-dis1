@@ -90,20 +90,23 @@ function MiFuncion($tipo,$rif,$comprador,$fecha,$productos,$direc){
 		default:
 			$error = "La direccion no sigue el formato";
 	}
-	$respuesta = array(
-		'tipo' => $tipo,
-		'ID' => '0',  //Identificador de la solicitud
-		'rif' => $rif,
-		'comprador' => $comprador,
-		'fecha' => $fecha,
-		'fechaF' => $nuevafecha,
-		'costo' => $costo,
-		'productos'=> $productos,
-		'direc' => $direc,
-		'Estatus' => "Entrante",
-		'error' => $error,
-	);
-	
+	if($error == " "){
+		$respuesta = array(
+			'tipo' => $tipo,
+			'ID' => '0',  //Identificador de la solicitud
+			'rif' => $rif,
+			'comprador' => $comprador,
+			'fecha' => $fecha,
+			'fechaF' => $nuevafecha,
+			'costo' => $costo,
+			'productos'=> $productos,
+			'direc' => $direc,
+			'Estatus' => "Entrante",
+			'error' => $error,
+		);
+	}else{
+		$respuesta = array('error' => $error);
+	}
 	return json_encode($respuesta);
  
 }
@@ -113,4 +116,3 @@ $servicio->service(file_get_contents("php://input"));
 
 
 ?>
-
