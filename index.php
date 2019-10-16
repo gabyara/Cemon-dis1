@@ -59,7 +59,7 @@
 				headers: {
         			'Authorization': miToken,
     			},
-                url:  'bankoneapi.16mb.com/api/bill',
+                url:  'www.bankoneapi.16mb.com/api/bill',
                 data: {"emitter":emitter,"receiver":receiver,"bill_ref_cod":bill_ref_cod,"amount":amount,"expdate":expdate,"description":description},
                 success: function(data) {
 					//json_data = JSON.parse(data);
